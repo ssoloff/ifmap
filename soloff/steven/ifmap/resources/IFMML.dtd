@@ -1,0 +1,78 @@
+<!--
+  IFMML.dtd
+  
+  Document Type Definition for Interactive Fiction Map Markup Language
+  Copyright (C) 2000-2001 by Steven M. Soloff
+  
+  Version 1.1.0 (02/06/2001)
+-->
+
+<!ENTITY % BOOLEAN "(TRUE | FALSE)">
+<!ENTITY % ROOMEXITS "(NW | N | NE | W | E | SW | S | SE | U | D)">
+
+<!-- ==================================================================== -->
+
+<!-- The root element of all IFMML documents. -->
+<!ELEMENT MAP (ROOM*, EDGE*)>
+
+<!-- ==================================================================== -->
+
+<!-- Defines a room in the map. -->
+<!ELEMENT ROOM EMPTY>
+
+<!-- Unique ID of the room.  For example, "Room###". -->
+<!ATTLIST ROOM ID ID #REQUIRED>
+
+<!-- Name of the room as displayed in the map. -->
+<!ATTLIST ROOM NAME CDATA #REQUIRED>
+
+<!-- Description of the room as displayed in the room properties dialog.
+     Newlines are represented as pipes ('|') -->
+<!ATTLIST ROOM DESCRIPTION CDATA #REQUIRED>
+
+<!-- x-coordinate of the top-left corner of the room in pixels. -->
+<!ATTLIST ROOM X CDATA #REQUIRED>
+
+<!-- y-coordinate of the top-left corner of the room in pixels. -->
+<!ATTLIST ROOM Y CDATA #REQUIRED>
+
+<!-- Width of the room in pixels. -->
+<!ATTLIST ROOM WIDTH CDATA #REQUIRED>
+
+<!-- Height of the room in pixels. -->
+<!ATTLIST ROOM HEIGHT CDATA #REQUIRED>
+
+<!-- Color used to render foreground of room (text).  Can be represented in
+     hexadecimal (e.g. "#FFFFFF" for white) or decimal (e.g. "16777215" for
+     white). -->
+<!ATTLIST ROOM FORECOLOR CDATA #REQUIRED>
+
+<!-- Color used to render background of room.  See comments for FORECOLOR
+     for possible representations. -->
+<!ATTLIST ROOM BACKCOLOR CDATA #REQUIRED>
+
+<!-- ==================================================================== -->
+
+<!-- Defines a path from one room exit to another. -->
+<!ELEMENT EDGE EMPTY>
+
+<!-- Unique ID of the edge.  For example, "Edge###". -->
+<!ATTLIST EDGE ID ID #REQUIRED>
+
+<!-- Indicates if the edge represents a one-way passage. -->
+<!ATTLIST EDGE ONEWAY %BOOLEAN; #REQUIRED>
+
+<!-- Indicates if the edge represents a secret passage. -->
+<!ATTLIST EDGE SECRET %BOOLEAN; #REQUIRED>
+
+<!-- Unique ID of the room the edge begins at. -->
+<!ATTLIST EDGE STARTROOMID IDREF #REQUIRED>
+
+<!-- Name of the exit the edge begins at. -->
+<!ATTLIST EDGE STARTROOMEXIT %ROOMEXITS; #REQUIRED>
+
+<!-- Unique ID of the room the edge ends at. -->
+<!ATTLIST EDGE ENDROOMID IDREF #REQUIRED>
+
+<!-- Name of the exit the edge ends at. -->
+<!ATTLIST EDGE ENDROOMEXIT %ROOMEXITS; #REQUIRED>
