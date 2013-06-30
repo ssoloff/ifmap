@@ -77,6 +77,7 @@ public class IFMapDoc
         {
             // Create and initialize a new DocumentBuilder instance
             m_oDocBuilder = oDocBuilderFactory.newDocumentBuilder();
+            m_oDocBuilder.setEntityResolver( new IFMapDoc.SAXEntityResolver() );
             m_oDocBuilder.setErrorHandler( new IFMapDoc.SAXErrorHandler() );
         }
         catch( ParserConfigurationException e )
@@ -221,8 +222,9 @@ public class IFMapDoc
             str = "<?xml version=\"1.0\" standalone=\"no\"?>";
             oBufferedWriter.write( str, 0, str.length() );
             oBufferedWriter.newLine();
-            str = "<!DOCTYPE " + IFMMLizable.IFMML_ELEM_MAP + " SYSTEM \"" +
-                IFMap.getProperty( "app.dtdURI" ) + "\">";
+            str = "<!DOCTYPE " + IFMMLizable.IFMML_ELEM_MAP + " PUBLIC \"" +
+                IFMMLizable.IFMML_DTD_PUBLIC_ID + "\" \"" +
+                IFMMLizable.IFMML_DTD_SYSTEM_ID + "\">";
             oBufferedWriter.write( str, 0, str.length() );
             oBufferedWriter.newLine();
 
@@ -271,6 +273,34 @@ public class IFMapDoc
     // **********************************************************************
     // *********************          Handlers          *********************
     // **********************************************************************
+
+    /**
+     * The object that is responsible for resolving entities encountered by
+     * the XML parser.
+     */
+    protected static class SAXEntityResolver
+        extends Object
+        implements EntityResolver
+    {
+        // ------------------------------------------------------------------
+        // -----------------    EntityHandler Methods    --------------------
+        // ------------------------------------------------------------------
+
+        /**
+         * @see  org.xml.sax.EntityHandler#resolveEntity( String, String )  resolveEntity
+         */
+
+        public InputSource resolveEntity( String publicId, String systemId )
+            throws SAXException, IOException
+        {
+            if( IFMMLizable.IFMML_DTD_PUBLIC_ID.equals( publicId ) )
+            {
+                return new InputSource( getClass().getClassLoader().getResourceAsStream( "soloff/steven/ifmap/resources/IFMML.dtd" ) );
+            }
+
+            return null;
+        }
+    }
 
     /**
      * The object that is responsible for handling SAX errors fired by the

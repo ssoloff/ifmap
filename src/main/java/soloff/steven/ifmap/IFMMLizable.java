@@ -27,6 +27,16 @@ public interface IFMMLizable
     // **********************************************************************
 
     /**
+     * The public identifier of the IFMML DTD.
+     */
+    public static final String IFMML_DTD_PUBLIC_ID = "-//SOLOFF STEVEN//IFMML 1.0";
+
+    /**
+     * The system identifier of the IFMML DTD.
+     */
+    public static final String IFMML_DTD_SYSTEM_ID = "http://steven.soloff/ifmml/1.0/ifmml.dtd";
+
+    /**
      * Name of the MAP element.
      */
     public static final String IFMML_ELEM_MAP = "MAP";

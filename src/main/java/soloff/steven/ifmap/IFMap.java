@@ -36,12 +36,6 @@ public class IFMap
     // **********************************************************************
 
     /**
-     * Key for the property that specifies the default DTD URI for all IFMML
-     * files created by this instance.
-     */
-    public static final String PROP_APP_DTDURI = "app.dtdURI";
-
-    /**
      * Key for the property that specifies the x-coordinate of the main window.
      */
     public static final String PROP_WINDOW_X = "window.x";
@@ -152,7 +146,6 @@ public class IFMap
         // Initialize the default application properties
         Properties oDefaultProps = new Properties();
         String strRecentFile = getResource( "app.recentFile" );
-        oDefaultProps.setProperty( PROP_APP_DTDURI, "\"file:soloff/steven/ifmap/resources/IFMML.dtd\"" );
         oDefaultProps.setProperty( PROP_FILE_MRU1, strRecentFile + " 1" );
         oDefaultProps.setProperty( PROP_FILE_MRU2, strRecentFile + " 2" );
         oDefaultProps.setProperty( PROP_FILE_MRU3, strRecentFile + " 3" );
@@ -330,7 +323,6 @@ public class IFMap
             dmView = m_oView.getSize();
 
             // Update user settings
-            IFMap.setProperty( PROP_APP_DTDURI, IFMap.getProperty( PROP_APP_DTDURI ) );
             IFMap.setProperty( PROP_FILE_MRU1, m_oView.getMRUFile( 0 ) );
             IFMap.setProperty( PROP_FILE_MRU2, m_oView.getMRUFile( 1 ) );
             IFMap.setProperty( PROP_FILE_MRU3, m_oView.getMRUFile( 2 ) );
