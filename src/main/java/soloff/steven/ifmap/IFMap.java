@@ -12,6 +12,7 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -163,7 +164,7 @@ public class IFMap
 
         try
         {
-            c_oProperties.load( new FileInputStream( "IFMap.settings" ) );
+            c_oProperties.load( new FileInputStream( getSettingsFile() ) );
         }
         catch( IOException eIO )
         {
@@ -188,6 +189,22 @@ public class IFMap
 
         // Listen for window events fired by the view
         m_oView.addWindowListener( new WindowListener() );
+    }
+
+
+    // **********************************************************************
+    // *********************    Private Class Methods    ********************
+    // **********************************************************************
+
+    /**
+     * Gets the application settings file.
+     *
+     * @return  The application settings file.
+     */
+
+    private static File getSettingsFile()
+    {
+        return new File( new File( new File( System.getProperty( "user.home" ) ), ".ifmap" ), "IFMap.settings" );
     }
 
 
@@ -338,7 +355,9 @@ public class IFMap
             try
             {
                 // Store updated user settings
-                c_oProperties.store( new FileOutputStream( "IFMap.settings" ),
+                File settingsFile = getSettingsFile();
+                settingsFile.getParentFile().mkdirs();
+                c_oProperties.store( new FileOutputStream( settingsFile ),
                     getResource( "app.propsComment" ) );
             }
             catch( IOException eIO )
