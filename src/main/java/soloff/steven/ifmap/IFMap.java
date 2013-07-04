@@ -204,7 +204,7 @@ public class IFMap
 
     private static File getSettingsFile()
     {
-        return new File( new File( new File( System.getProperty( "user.home" ) ), ".ifmap" ), "IFMap.settings" );
+        return new File( new File( new File( System.getProperty( "user.home" ) ), ".ifmap" ), "ifmap.settings" );
     }
 
 
