@@ -221,7 +221,7 @@ public class IFMap
     public static void main( String[] args )
     {
         // Create a new IFMap
-        IFMap theApp = new IFMap();
+        new IFMap();
     }
 
     /**
