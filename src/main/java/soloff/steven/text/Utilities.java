@@ -1,9 +1,21 @@
 /*
  * Utilities.java
  *
- * Copyright (c) 2000 by Steven M. Soloff.
+ * Copyright 2000-2013 by Steven Soloff.
  * All rights reserved.
  *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 package soloff.steven.text;
@@ -15,9 +27,6 @@ import javax.swing.SwingUtilities;
 
 /**
  * A collection of methods to deal with various text related activities.
- *
- * @author   Steven M. Soloff
- * @version  1.0.0 (11/24/00)
  */
 
 public class Utilities
