@@ -320,7 +320,7 @@ public class RoomUI
         // Display the Room Editor dialog
         RoomEditorDialog dlg = new RoomEditorDialog(
             JOptionPane.getFrameForComponent( this ), m_oRoom );
-        dlg.show();
+        dlg.setVisible( true );
 
         // Update the UI
         updateText();

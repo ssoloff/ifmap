@@ -211,7 +211,7 @@ public final class EdgeEditorDialog
             // Close the dialog and save changes
             m_oEdge.setOneWay( m_oOneWayCheck.isSelected() );
             m_oEdge.setSecret( m_oSecretCheck.isSelected() );
-            hide();
+            setVisible( false );
         }
     }
 
@@ -260,7 +260,7 @@ public final class EdgeEditorDialog
         public void actionPerformed( ActionEvent evt )
         {
             // Close the dialog without saving changes
-            hide();
+            setVisible( false );
         }
     }
 }

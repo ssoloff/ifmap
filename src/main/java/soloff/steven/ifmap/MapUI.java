@@ -782,7 +782,7 @@ public class MapUI
             // Display the Edge Editor dialog
             EdgeEditorDialog dlg = new EdgeEditorDialog(
                 JOptionPane.getFrameForComponent( MapUI.this ), m_oFocusEdge );
-            dlg.show();
+            dlg.setVisible( true );
 
             // Repaint the edge
             repaintEdge( m_oFocusEdge );

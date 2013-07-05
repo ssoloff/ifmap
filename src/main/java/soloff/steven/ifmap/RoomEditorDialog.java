@@ -378,7 +378,7 @@ public class RoomEditorDialog
                 m_oRoom.setDescription( m_oDescriptionField.getText() );
                 m_oRoom.setForeground( m_oForeColorPanel.getBackground() );
                 m_oRoom.setBackground( m_oBackColorPanel.getBackground() );
-                hide();
+                setVisible( false );
             }
             else
                 // Display warning message
@@ -434,7 +434,7 @@ public class RoomEditorDialog
         public void actionPerformed( ActionEvent evt )
         {
             // Close the dialog without saving changes
-            hide();
+            setVisible( false );
         }
     }
 }
