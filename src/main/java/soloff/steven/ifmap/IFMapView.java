@@ -8,11 +8,27 @@
 
 package soloff.steven.ifmap;
 
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.Event;
+import java.awt.event.ActionEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.KeyEvent;
 import java.util.Iterator;
-import java.util.ResourceBundle;
-import javax.swing.*;
+import javax.swing.AbstractAction;
+import javax.swing.ButtonGroup;
+import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JRadioButtonMenuItem;
+import javax.swing.JScrollPane;
+import javax.swing.KeyStroke;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 
 /**
  * The object that provides a graphical user interface for the application.

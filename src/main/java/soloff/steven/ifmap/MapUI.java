@@ -8,11 +8,17 @@
 
 package soloff.steven.ifmap;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.Polygon;
+import java.awt.Rectangle;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseEvent;
-import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -887,7 +893,7 @@ public class MapUI
                     // Determine if the circular edge connects to the same exit
                     if( oEdge.getStartExit() == oEdge.getEndExit() )
                     {
-                        // Draw the 360° circular edge
+                        // Draw the 360ï¿½ circular edge
                         g.drawOval( rectEdge.x, rectEdge.y, rectEdge.width, rectEdge.height );
                     }
                     else
@@ -920,14 +926,14 @@ public class MapUI
                         }
 
                         // Determine which arc to draw and compute its coverage (if
-                        // angle 2 leads angle 1 by more than 180°, draw the CCW arc;
+                        // angle 2 leads angle 1 by more than 180ï¿½, draw the CCW arc;
                         // otherwise draw the CW arc; i.e. we draw the longest arc).
                         if( dAngle2 - dAngle1 >= 180.0 )
                             dArcAngle = dAngle2 - dAngle1;
                         else
                             dArcAngle = -(dAngle1 - (dAngle2 - 360.0));
 
-                        // Draw the sub-360° circular edge
+                        // Draw the sub-360ï¿½ circular edge
                         g.drawArc( rectEdge.x, rectEdge.y, rectEdge.width, rectEdge.height,
                             (int)dAngle1, (int)dArcAngle );
 

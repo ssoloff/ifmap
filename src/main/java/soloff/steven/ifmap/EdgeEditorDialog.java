@@ -8,10 +8,19 @@
 
 package soloff.steven.ifmap;
 
-import java.util.ResourceBundle;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
-import javax.swing.*;
+import javax.swing.AbstractAction;
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JDialog;
+import javax.swing.JPanel;
 
 /**
  * The dialog box used to edit the properties of an Edge object.

@@ -8,7 +8,8 @@
 
 package soloff.steven.awt;
 
-import java.awt.*;
+import java.awt.Rectangle;
+import java.awt.Window;
 
 /**
  * A collection of methods to deal with various AWT-related activities.

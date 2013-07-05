@@ -13,9 +13,15 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.JOptionPane;
-import javax.xml.parsers.*;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.Document;
-import org.xml.sax.*;
+import org.xml.sax.EntityResolver;
+import org.xml.sax.ErrorHandler;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 
 /**
  * The object that serves as the document for the application.
