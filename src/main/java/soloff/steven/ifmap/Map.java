@@ -36,13 +36,13 @@ public class Map
      * The hashtable used to reference all Room objects contained within
      * the Map.
      */
-    protected HashMap m_oRoomMap;
+    protected HashMap<String, Room> m_oRoomMap;
 
     /**
      * The hashtable used to reference all Edge objects contained within
      * the Map.
      */
-    protected HashMap m_oEdgeMap;
+    protected HashMap<String, Edge> m_oEdgeMap;
 
     /**
      * Stores the dimensions of the map.  The map dimensions are defined to
@@ -62,8 +62,8 @@ public class Map
     public Map()
     {
         // Initialize instance variables
-        m_oRoomMap = new HashMap();
-        m_oEdgeMap = new HashMap();
+        m_oRoomMap = new HashMap<String, Room>();
+        m_oEdgeMap = new HashMap<String, Edge>();
         m_dmMap = new Dimension( MapUI.MIN_MAP_WIDTH, MapUI.MIN_MAP_HEIGHT );
     }
 
@@ -151,9 +151,9 @@ public class Map
         /////////////////////////////////////////////////////////////////////
         // VARIABLE DECLARATIONS                                           //
 
-        Iterator iter;       // Iterator for Edge hash map
-        Edge     oEdge;      // An Edge on the Map
-        String   strRoomID;  // ID of the Room to be deleted
+        Iterator<Edge> iter;       // Iterator for Edge hash map
+        Edge           oEdge;      // An Edge on the Map
+        String         strRoomID;  // ID of the Room to be deleted
 
         //                                                                 //
         /////////////////////////////////////////////////////////////////////
@@ -169,7 +169,7 @@ public class Map
         for( iter = m_oEdgeMap.values().iterator(); iter.hasNext(); )
         {
             // Remove any Edge connected to the Room being deleted from the Map
-            oEdge = (Edge)iter.next();
+            oEdge = iter.next();
             if( oEdge.getStartRoomID().equals( strRoomID ) ||
                     oEdge.getEndRoomID().equals( strRoomID ) )
                 iter.remove();
@@ -244,15 +244,6 @@ public class Map
     public Edge getEdgeAtRoomExit( Room oRoom, int nExitID )
         throws IllegalArgumentException
     {
-        /////////////////////////////////////////////////////////////////////
-        // VARIABLE DECLARATIONS                                           //
-
-        Edge     oEdge;  // Reference to an Edge object
-        Iterator oIter;  // Iterator for the Edge map
-
-        //                                                                 //
-        /////////////////////////////////////////////////////////////////////
-
         // Make sure arguments are valid
         if( oRoom == null )
             throw new IllegalArgumentException();
@@ -260,11 +251,8 @@ public class Map
             throw new IllegalArgumentException();
 
         // Iterate through the edge map
-        for( oIter = m_oEdgeMap.values().iterator(); oIter.hasNext(); )
+        for( final Edge oEdge : m_oEdgeMap.values() )
         {
-            // Get the next Edge in the map
-            oEdge = (Edge)oIter.next();
-
             // Determine if the Edge is attached to the specified exit of the
             // specified room
             if( (oEdge.m_strStartRoomID.equals( oRoom.m_strID ) && oEdge.m_nStartExit == nExitID) ||
@@ -286,21 +274,9 @@ public class Map
 
     public boolean checkIntegrity()
     {
-        /////////////////////////////////////////////////////////////////////
-        // VARIABLE DECLARATIONS                                           //
-
-        Edge     oEdge;  // Reference to an Edge object
-        Iterator oIter;  // Iterator for the Edge map
-
-        //                                                                 //
-        /////////////////////////////////////////////////////////////////////
-
         // Iterate through the edge map
-        for( oIter = m_oEdgeMap.values().iterator(); oIter.hasNext(); )
+        for( final Edge oEdge : m_oEdgeMap.values() )
         {
-            // Get the next Edge in the map
-            oEdge = (Edge)oIter.next();
-
             // Make sure the Edge is valid
             if( m_oRoomMap.get( oEdge.m_strStartRoomID ) == null ||
                 m_oRoomMap.get( oEdge.m_strEndRoomID ) == null ||
@@ -432,8 +408,7 @@ public class Map
         /////////////////////////////////////////////////////////////////////
         // VARIABLE DECLARATIONS                                           //
 
-        Iterator iter;  // Iterator for Room and Edge maps
-        String   str;   // Text to be written to IFMML file
+        String str;  // Text to be written to IFMML file
 
         //                                                                 //
         /////////////////////////////////////////////////////////////////////
@@ -444,12 +419,12 @@ public class Map
         oWriter.newLine();
 
         // Write all ROOM elements
-        for( iter = m_oRoomMap.values().iterator(); iter.hasNext(); )
-            ((Room)iter.next()).writeIFMML( oWriter );
+        for( final Room room : m_oRoomMap.values() )
+            room.writeIFMML( oWriter );
 
         // Write all EDGE elements
-        for( iter = m_oEdgeMap.values().iterator(); iter.hasNext(); )
-            ((Edge)iter.next()).writeIFMML( oWriter );
+        for( final Edge edge : m_oEdgeMap.values() )
+            edge.writeIFMML( oWriter );
 
         // End MAP element
         str = "</" + IFMML_ELEM_MAP + ">";

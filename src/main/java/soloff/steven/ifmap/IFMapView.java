@@ -14,7 +14,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
-import java.util.Iterator;
 import javax.swing.AbstractAction;
 import javax.swing.ButtonGroup;
 import javax.swing.JCheckBoxMenuItem;
@@ -144,8 +143,8 @@ public class IFMapView
         clear();
 
         // Add each RoomUI to the view
-        for( Iterator iter = m_oMapUI.m_oMap.m_oRoomMap.values().iterator(); iter.hasNext(); )
-            m_oMapUI.addRoom( (Room)iter.next() );
+        for( final Room room : m_oMapUI.m_oMap.m_oRoomMap.values() )
+            m_oMapUI.addRoom( room );
 
         // Revalidate and repaint the view
         m_oMapUI.revalidate();

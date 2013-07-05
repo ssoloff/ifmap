@@ -21,7 +21,6 @@ import java.awt.event.FocusEvent;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 import java.util.HashMap;
-import java.util.Iterator;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
@@ -87,7 +86,7 @@ public class MapUI
      * The hashtable used to reference all RoomUI objects contained within
      * the MapUI.
      */
-    protected HashMap m_oRoomUIMap;
+    protected HashMap<String, RoomUI> m_oRoomUIMap;
 
     /**
      * Reference to the UI component that currently has the focus (either
@@ -176,7 +175,7 @@ public class MapUI
 
         // Initialize instance variables
         m_oMap = oMap;
-        m_oRoomUIMap = new HashMap();
+        m_oRoomUIMap = new HashMap<String, RoomUI>();
         m_oActiveComponent = null;
         m_oFocusEdge = null;
         m_bDraggingRoom = false;
@@ -418,8 +417,6 @@ public class MapUI
         /////////////////////////////////////////////////////////////////////
         // VARIABLE DECLARATIONS                                           //
 
-        Edge      oEdge;        // Current Edge
-        Iterator  iter;         // Iterator for Edge map
         Rectangle rect;         // Bounding rectangle of circular Edge
         Polygon   poly;         // Bounding polygon of line Edge
         Point     ptEdgeStart,  // Start point of an Edge
@@ -434,11 +431,8 @@ public class MapUI
         /////////////////////////////////////////////////////////////////////
 
         // Loop through all the edges on the map
-        for( iter = m_oMap.m_oEdgeMap.values().iterator(); iter.hasNext(); )
+        for( final Edge oEdge : m_oMap.m_oEdgeMap.values() )
         {
-            // Get a reference to the next edge
-            oEdge = (Edge)iter.next();
-
             // Hit test is handled differently for line edges and circular edges
             if( oEdge.getStartRoomID().equals( oEdge.getEndRoomID() ) )
             {
@@ -829,8 +823,6 @@ public class MapUI
         /////////////////////////////////////////////////////////////////////
         // VARIABLE DECLARATIONS                                           //
 
-        Edge           oEdge;      // Edge to be drawn
-        Iterator       iter;       // Iterator for edge map
         Rectangle      rectClip,   // The current clipping rectangle
                        rectEdge;   // Bounding rectangle of the current edge
         Point2D.Double pt1;        // Starting point of current circular (arc) edge
@@ -882,10 +874,9 @@ public class MapUI
         ptCenter = new Point2D.Double();
 
         // Iterate through all the edges on the map
-        for( iter = m_oMap.m_oEdgeMap.values().iterator(); iter.hasNext(); )
+        for( final Edge oEdge : m_oMap.m_oEdgeMap.values() )
         {
             // Get the bounds of the next Edge
-            oEdge = (Edge)iter.next();
             rectEdge = getEdgeBounds( oEdge );
             ptStart = oEdge.getStartPoint();
             ptEnd = oEdge.getEndPoint();
@@ -1045,9 +1036,8 @@ public class MapUI
             /////////////////////////////////////////////////////////////////
             // VARIABLE DECLARATIONS                                       //
 
-            Iterator iter;         // Used to iterate the RoomUI list
-            Point    ptGlobalMin,  // Global minimal x- and y- coordinates of all rooms
-                     ptRoom;       // Location of a room
+            Point ptGlobalMin,  // Global minimal x- and y- coordinates of all rooms
+                  ptRoom;       // Location of a room
 
             //                                                             //
             /////////////////////////////////////////////////////////////////
@@ -1056,10 +1046,10 @@ public class MapUI
             ptGlobalMin = new Point( Integer.MAX_VALUE, Integer.MAX_VALUE );
 
             // Iterate through all rooms
-            for( iter = m_oRoomUIMap.values().iterator(); iter.hasNext(); )
+            for( final RoomUI roomUI : m_oRoomUIMap.values() )
             {
                 // Get the location of the next room
-                ptRoom = ((RoomUI)iter.next()).getLocation();
+                ptRoom = roomUI.getLocation();
 
                 // Check for new minimums
                 if( ptRoom.x < ptGlobalMin.x )
@@ -1088,7 +1078,6 @@ public class MapUI
             /////////////////////////////////////////////////////////////////
             // VARIABLE DECARATIONS                                        //
 
-            Iterator  iter;      // Iterator for edge map
             Rectangle rectEdge,  // Bounds of the current edge
                       rectNew;   // New rectangle including intersecting edges
 
@@ -1099,10 +1088,10 @@ public class MapUI
             rectNew = new Rectangle( rect );
 
             // Iterate through all edges
-            for( iter = m_oMap.m_oEdgeMap.values().iterator(); iter.hasNext(); )
+            for( final Edge edge : m_oMap.m_oEdgeMap.values() )
             {
                 // Get bounds of the next edge
-                rectEdge = getEdgeBounds( (Edge)iter.next() );
+                rectEdge = getEdgeBounds( edge );
 
                 // If the edge intersects the base rectangle include it
                 if( rect.intersects( rectEdge ) )
@@ -1124,9 +1113,7 @@ public class MapUI
             /////////////////////////////////////////////////////////////////
             // VARIABLE DECLARATIONS                                       //
 
-            RoomUI    oRoomUI;     // Reference to a RoomUI object
             Component oComponent;  // Component associated with mouse event
-            Iterator  iter;        // Used to iterate through all RoomUI objects
             Rectangle rectOld,     // Previous bounds for edge being dragged
                       rectNew;     // New bounds for edge being dragged
             Point     ptCurrent,   // Point associated with mouse event
@@ -1176,10 +1163,9 @@ public class MapUI
                 m_ptGlobalMin.translate( dmDelta.width, dmDelta.height );
 
                 // Iterate through all rooms
-                for( iter = m_oRoomUIMap.values().iterator(); iter.hasNext(); )
+                for( final RoomUI oRoomUI : m_oRoomUIMap.values() )
                 {
                     // Move this room by the specified amount
-                    oRoomUI = (RoomUI)iter.next();
                     ptTemp = oRoomUI.getLocation();
                     ptTemp.translate( dmDelta.width, dmDelta.height );
                     oRoomUI.setLocation( ptTemp );
@@ -1499,11 +1485,9 @@ public class MapUI
 
                 if( !bChanged || MapUI.this.m_bGroupMoveEnabled )
                 {
-                    Iterator iter = m_oRoomUIMap.values().iterator();
                     int nMaxX = MIN_MAP_WIDTH, nMaxY = MIN_MAP_HEIGHT;
-                    while( iter.hasNext() )
+                    for( final RoomUI roomUI : m_oRoomUIMap.values() )
                     {
-                        RoomUI roomUI = (RoomUI)iter.next();
                         nMaxX = Math.max( nMaxX, roomUI.m_oRoom.m_rectBounds.x + roomUI.m_oRoom.m_rectBounds.width );
                         nMaxY = Math.max( nMaxY, roomUI.m_oRoom.m_rectBounds.y + roomUI.m_oRoom.m_rectBounds.height );
                     }
