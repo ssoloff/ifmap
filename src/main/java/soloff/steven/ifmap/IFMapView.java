@@ -272,7 +272,7 @@ public class IFMapView
         setSize( Integer.parseInt( IFMap.getProperty( IFMap.PROP_WINDOW_WIDTH ) ),
             Integer.parseInt( IFMap.getProperty( IFMap.PROP_WINDOW_HEIGHT ) ) );
         setDefaultCloseOperation( DISPOSE_ON_CLOSE );
-        setIconImage( IFMap.createImageIcon( "icon.gif" ).getImage() );
+        setIconImage( IFMap.createImageIcon( "icon.png" ).getImage() );
 
         // Initialize layout
         getContentPane().setLayout( new BorderLayout() );
@@ -1194,7 +1194,7 @@ public class IFMapView
             JOptionPane.showMessageDialog( IFMapView.this,
                 IFMap.getResource( "aboutDialog.message" ),
                 IFMap.getResource( "aboutDialog.title" ), JOptionPane.OK_OPTION,
-                IFMap.createImageIcon( "icon.gif" ) );
+                IFMap.createImageIcon( "icon.png" ) );
         }
     }
 }
