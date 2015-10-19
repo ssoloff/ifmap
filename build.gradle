@@ -13,6 +13,14 @@ jar {
     }
 }
 
+javadoc {
+    options {
+        links(
+            'https://docs.oracle.com/javase/8/docs/api/'
+        )
+    }
+}
+
 processResources {
     filter ReplaceTokens, tokens: [
         'projectVersion': project.version
