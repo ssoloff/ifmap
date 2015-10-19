@@ -4,7 +4,7 @@ description = 'An interactive fiction mapping utility.'
 version = '1.2.0'
 
 task wrapper(type: Wrapper) {
-    description = 'Generates Gradle wrapper files for this project.'
+    description = 'Generates Gradle wrapper files.'
     gradleVersion = '2.7'
     group = 'Build Setup'
 }
