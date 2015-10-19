@@ -3,6 +3,14 @@ apply plugin: 'java'
 description = 'An interactive fiction mapping utility.'
 version = '1.2.0'
 
+jar {
+    manifest {
+        attributes(
+            'Main-Class': 'soloff.steven.ifmap.IFMap'
+        )
+    }
+}
+
 task wrapper(type: Wrapper) {
     description = 'Generates Gradle wrapper files.'
     gradleVersion = '2.7'
