@@ -347,7 +347,7 @@ public class Map
     // **********************************************************************
 
     /**
-     * @see  soloff.steven.ifmap.IFMMLizable#readIFMML( BufferedReader )
+     * @see  soloff.steven.ifmap.IFMMLizable#readIFMML( Element )
      *     readIFMML
      */
 

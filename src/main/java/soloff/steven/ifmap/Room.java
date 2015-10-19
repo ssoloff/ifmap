@@ -552,11 +552,11 @@ public class Room
     /**
      * Gets the ID of the named exit.
      *
-     * @param  strExit  Name of the exit whose ID is desired.
+     * @param  strExitName  Name of the exit whose ID is desired.
      *
      * @return  The ID of the requested exit.
      *
-     * @exception  IllegalArgumentException  If strExit is not a valid exit
+     * @exception  IllegalArgumentException  If strExitName is not a valid exit
      *     name.
      */
 
