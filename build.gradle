@@ -6,6 +6,10 @@ description = 'An interactive fiction mapping utility.'
 sourceCompatibility = '1.6'
 version = '1.2.0'
 
+tasks.withType(JavaCompile) {
+  options.bootClasspath = "$JDK6_HOME/jre/lib/rt.jar"
+}
+
 jar {
     manifest {
         attributes(
