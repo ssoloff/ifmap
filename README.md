@@ -1,6 +1,6 @@
 # IF Map
 
-[![Build Status][travis-image]][travis-link]
+[![Build Status](https://travis-ci.org/ssoloff/ifmap.svg?branch=master)](https://travis-ci.org/ssoloff/ifmap)
 
 Interactive fiction mapping utility.
 
@@ -16,5 +16,6 @@ Also ensure this JDK appears before any other JDK in `PATH`:
 
     $ export PATH=$JAVA_HOME/bin:$PATH
 
-[travis-image]: https://travis-ci.org/ssoloff/ifmap.svg?branch=master
-[travis-link]: https://travis-ci.org/ssoloff/ifmap
+### Eclipse
+
+If using Gradle from within Eclipse, the Gradle build launch configurations use the default JDK on in `PATH`.  Therefore, you should run Eclipse from the same terminal where you configured `JAVA_HOME` and `PATH` above.
