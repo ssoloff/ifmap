@@ -18,4 +18,4 @@ Also ensure this JDK appears before any other JDK in `PATH`:
 
 ### Eclipse
 
-If using Gradle from within Eclipse, the Gradle build launch configurations use the default JDK on in `PATH`.  Therefore, you should run Eclipse from the same terminal where you configured `JAVA_HOME` and `PATH` above.
+If using Gradle from within Eclipse, the Gradle build launch configurations use the default JDK in `PATH`.  Therefore, you should run Eclipse from the same terminal where you configured `JAVA_HOME` and `PATH` above.
